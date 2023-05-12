@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    // nom de la fonction au singulier car un seul message en relation
+    // cardinalité 1,1
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+
+    // idem
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

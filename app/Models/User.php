@@ -41,4 +41,31 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // nom au pluriel car un user peut poster plusieurs quacks
+    // cardinalité 0,n
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    // nom au pluriel car un user peut poster plusieurs commentaires
+    // cardinalité 0,n
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    // nom de la fonction au singulier car 1 seul rôle en relation
+    // cardinalité 0,n
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function isAdmin()
+    {
+        // return $this->role == "admin";
+        return $this->role_id == 2;
+    }
 }
