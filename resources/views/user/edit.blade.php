@@ -1,10 +1,10 @@
 @extends ('layouts.app')
 
-@section('title')
+@section ('title')
     Mon compte
 @endsection
 
-@section('content')
+@section ('content')
 <main class="container">
 
     <h1>Mon compte</h1>
@@ -27,7 +27,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Valider</button>
-                </div>
+                
             </form>
 
             <form action="{{route('users.destroy', $user)}}" method="post">
@@ -35,6 +35,7 @@
                 @method("delete")
                 <button type="submit" class="btn btn-danger">Supprimer le compte</button>
             </form>
+    </div>
 
 </main>
 @endsection

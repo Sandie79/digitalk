@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post; 
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('home'); // permet de gérer les accès, je dois être authentifiée pour accéder à la home
     }
 
     /**
@@ -23,6 +24,41 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('index');
+    }
+
+    public function home()
+    {
+    // Afficher les 10 derniers message par page du plus récent au plus ancien
+
+    // Récupérer les 10 derniers messages
+    //$posts = Post::orderBy('created_at', 'desc')->take(10)->get();
+    $posts = Post::latest()->paginate(10);
+
+    //dd($posts);
+
+    return view('home', ['posts' => $posts]);
     }
 }
+
+//public function home()
+    {
+        // syntaxe de base : on récupère tous les messages
+        // $posts = Post::all();
+
+        // syntaxe avec le + récent en 1er +
+        // $posts = Post::latest()->get();
+
+        // syntaxe avec le + récent en 1er + la pagination (5 messages par page)
+        //$posts = Post::latest()->paginate(5);
+
+        // eager loading 1
+        //$posts = Post::with('comments', 'user')->latest()->paginate(10);
+        
+        //eager loading 2
+        //$posts->load('comments', 'user');
+
+        //return view('home', compact('posts'));
+        // autre syntaxe
+        //return view('home', ['posts' => $posts]);
+    }
