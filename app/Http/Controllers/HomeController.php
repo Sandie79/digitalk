@@ -14,7 +14,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only('home'); // permet de gérer les accès, je dois être authentifiée pour accéder à la home
+        $this->middleware('auth')->only('home');
+        $this->middleware('guest')->only('index'); // permet de gérer les accès, je dois être authentifiée pour accéder à la home
     }
 
     /**
@@ -34,6 +35,7 @@ class HomeController extends Controller
     // Récupérer les 10 derniers messages
     //$posts = Post::orderBy('created_at', 'desc')->take(10)->get();
     $posts = Post::latest()->paginate(10);
+    $posts->load('user','comments.user'); // permet d'ajouter à chaque post une propriété user
 
     //dd($posts);
 

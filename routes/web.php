@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,16 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
-Route::resource('/users', App\Http\Controllers\UserController::class)->except('index', 'create', 'store');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+
+Route::get('/search', [App\Http\Controllers\PostController::class, 'search'])->name('search');
+
+Route::resource('/users', App\Http\Controllers\UserController::class)->except('index', 'create', 'store');
+
 Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index', 'create');
+
+Route::resource('/comments', App\Http\Controllers\CommentController::class)->except('index', 'create');

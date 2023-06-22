@@ -8,9 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'content',
+        'tags',
+        'user_id',
+        'post_id',
+        'image',
+    ];
 
-    // nom de la fonction au singulier car un seul message en relation
-    // cardinalité 1,1
+    // je charge automatiquement l'utilisateur à chaque fois que je récupère un message
+    // protected $with = ['user', 'post'];
 
     public function post()
     {

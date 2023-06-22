@@ -72,4 +72,17 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('home')->with('message', 'Le message a bien été supprimé');
     }
+
+    public function search(Request $request)
+{
+    $request->validate([
+        'search' => ['required', 'string', 'max:20', 'min:3'],
+    ]);
+
+    $posts = Post::where('content', 'LIKE', '%' . $request->search . '%')
+                 ->orWhere('tags', 'LIKE', '%' . $request->search . '%')
+                 ->latest()->paginate();
+
+    return view('home', compact('posts'));
+}
 }
