@@ -20,7 +20,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-warning">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-warning fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -59,7 +59,7 @@
                                         </div>
 
                                         <div class="col-md-4">
-                                            <button type="submit" class="btn btn-secondary">Rechercher</button>
+                                            <button type="submit" class="btn btn-primary">Rechercher</button>
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
             </div>
         </nav>
 
-        <main>
+        <main style="background-image: url(images/fond.jpg); background-attachment:fixed; background-size:cover">
 
             <div class="container-fluid text-center">
                 @if (session()->has('message'))

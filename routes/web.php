@@ -25,6 +25,6 @@ Route::get('/search', [App\Http\Controllers\PostController::class, 'search'])->n
 
 Route::resource('/users', App\Http\Controllers\UserController::class)->except('index', 'create', 'store');
 
-Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index', 'create');
+Route::resource('/posts', App\Http\Controllers\PostController::class)->except('create');
 
 Route::resource('/comments', App\Http\Controllers\CommentController::class)->except('index', 'create');

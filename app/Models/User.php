@@ -34,6 +34,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    // public function isAdmin() {
+    //     return false;
+
+    // }
+
     /**
      * The attributes that should be cast.
      *
@@ -67,6 +72,10 @@ class User extends Authenticatable
     public function isAdmin()
     {
         // return $this->role == "admin";
-        return $this->role_id == 2;
+        if ($this->role_id == 2) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -11,7 +11,13 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function index () {
+        $posts = Post::with('category')->paginate(10);
+        return view('admin.posts.index', ['posts' => $posts]);
+    }
+    
+    
+     public function store(Request $request)
     {
         //dd($request);
         $request->validate([
@@ -42,6 +48,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
         return view('posts/edit', ['post' => $post]);
     }
 

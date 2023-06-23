@@ -7,7 +7,7 @@
         <p class="card-text text-center fs-5">{{ $user->pseudo }}</p>
 
         <div class="text-center">
-            <img src="public/images/profil.jpg" alt="image de profil">
+            <img class="w-25 mb-3" src="{{ asset('images/' . $user->image) }} " alt="image du profil">
         </div>
         
 
