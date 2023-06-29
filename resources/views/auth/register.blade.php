@@ -2,17 +2,17 @@
 
 @section('content')
 <div class="container">
+    <h1 class="title text-white text-center">Inscription</h1>
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+        <div class="col-md-8 mt-5">
+            <div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="pseudo" class="col-md-4 col-form-label text-md-end">{{ __('pseudo') }}</label>
+                            <label for="pseudo" class="text-white fs-5 col-md-4 col-form-label text-md-end">Pseudo</label>
 
                             <div class="col-md-6">
                                 <input id="pseudo" type="text" class="form-control @error('pseudo') is-invalid @enderror" name="pseudo" value="{{ old('pseudo') }}" required autocomplete="pseudo" autofocus>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('image') }}</label>
+                            <label for="image" class="text-white fs-5 col-md-4 col-form-label text-md-end">Image</label>
 
                             <div class="col-md-6">
                                 <input id="image" type="text" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" required autocomplete="image" autofocus>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">e-mail</label>
+                            <label for="email" class="text-white fs-5 col-md-4 col-form-label text-md-end">Email</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">Mot de passe</label>
+                            <label for="password" class="text-white fs-5 col-md-4 col-form-label text-md-end">Mot de passe</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirmez le mot de passe</label>
+                            <label for="password-confirm" class="text-white fs-5 col-md-4 col-form-label text-md-end">Confirmez le mot de passe</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control"name="password_confirmation" required autocomplete="new-password">

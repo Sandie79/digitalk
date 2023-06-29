@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <div class="container pt-5">
-        <h1 class="card-title text-center text-white p-4">Bienvenue sur Digitalk</h1>
+    <div class="container pt-3">
+        <h1 class="title text-white text-center">Bienvenue sur Digitalk</h1>
 
         <main class="container mb-5">
             <h2 class="text-center text-white">Ajouter un message</h2>
@@ -13,13 +13,13 @@
                     @csrf
 
                     <div class="form-group mt-3">
-                        <label class="text-white" for="content">Votre message</label>
+                        <label class="text-white fs-5" for="content">Votre message</label>
                         <input required type="text" class="form-control" placeholder="Saisir votre message"
                             name="content" id="content">
                     </div>
 
                     <div class="form-group mt-3">
-                        <label class="text-white" for="tags">Tags</label>
+                        <label class="text-white fs-5" for="tags">Tags</label>
                         <input required type="text" class="form-control" placeholder="#salut" name="tags"
                             id="content">
                     </div>

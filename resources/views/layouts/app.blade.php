@@ -18,13 +18,14 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
 </head>
 
-<body>
+<body style="background-image: url(images/fond.jpg); background-attachment:fixed; background-size:cover" class="mt-5 pt-5">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-warning fixed-top">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-primary fixed-top" style="height:80px">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <div class="img-fluid"> <a class="navbar-brand" href="{{ url('/') }}">
+                   <img src="images\logo_digitalk.png" alt="logo_digitalk" style="height:80px">
                 </a>
+                </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -34,39 +35,39 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                    <ul class="navbar-nav mx-auto">
+                    <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link text-white fs-4 me-5" href="{{ route('login') }}">Connexion</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-white fs-4 me-5" href="{{ route('register') }}">Inscription</a>
                                 </li>
                             @endif
                         @else
                             <form action="{{ route('search') }}" method="GET">
                                 @csrf
                                 <div class="form-group">
-                                    <div class="row">
+                                    <div class="row me-auto">
                                         <div class=col-md-8>
                                             <input required type="text" class="form-control"
                                                 placeholder="Rechercher sur Digitalk" name="search" id="search">
                                         </div>
 
                                         <div class="col-md-4">
-                                            <button type="submit" class="btn btn-primary">Rechercher</button>
+                                            <button type="submit" class="btn btn-secondary">Rechercher</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
 
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->pseudo }}
                                 </a>
@@ -76,7 +77,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Déconnexion
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -90,7 +91,7 @@
             </div>
         </nav>
 
-        <main style="background-image: url(images/fond.jpg); background-attachment:fixed; background-size:cover">
+        <main>
 
             <div class="container-fluid text-center">
                 @if (session()->has('message'))

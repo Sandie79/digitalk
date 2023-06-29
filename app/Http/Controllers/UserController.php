@@ -13,8 +13,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user -> load('posts');        
-        return view('user.show', ['user' => $user]);
+        $user -> load('posts');        // je charge les posts du user
+        return view('user.show', ['user' => $user]); // je renvoie les vues à l'internaute
     }
 
     /**
