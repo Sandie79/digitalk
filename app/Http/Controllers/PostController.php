@@ -57,6 +57,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('update', $post); // double sécurité pour vérifier que seul un admin ou l'auteur du post accède à cette page
+
         $request->validate([
             'content' => ['required', 'string', 'max:1000'],
             'tags' => ['required', 'string', 'max:40'],
@@ -75,7 +77,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('delete', $post); // double sécurité pour vérifier que seul un admin ou l'auteur du post accède à cette page
+
         $post->delete();
         return redirect()->route('home')->with('message', 'Le message a bien été supprimé');
     }

@@ -13,11 +13,11 @@ class PostPolicy
     // /**
     //  * Determine whether the user can view any models.
     //  */
-    // public function before(User $user, $ability): bool {
-    //     if($user->isAdmin()) {
+    // public function before(User $user): bool
+    // {
+    //     if ($user->role_id == 2) {
     //         return true;
-    //     }
-    //     else {
+    //     } else {
     //         return false;
     //     }
     // }
@@ -29,11 +29,10 @@ class PostPolicy
     public function update(User $user, Post $post): bool
     {
         //return true;
-        
-        if($user->id == $post->user_id) {
+
+        if ($user->id == $post->user_id || $user->role_id == 2) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -43,12 +42,10 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        if($user->id == $post->user_id) {
+        if ($user->id == $post->user_id || $user->role_id == 2) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
-
 }
