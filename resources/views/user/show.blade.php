@@ -11,8 +11,10 @@
             <div class="col-md-10">
                 
                     <div class="col pt-3"><h1 class="title text-white text-center">Bienvenue sur le profil de</h1>
-                           <p class="text-center"> {{ $user->pseudo }} </p>
+                           <h2 class="text-center text-white" id="pseudo"> {{ $user->pseudo }} </h2>
                     </div>
+
+                    <!-- IMAGE USER -->
                     <div class="container-fluid text-center p-3">
                         <div class="col">
                             @if ($user->image)
@@ -25,31 +27,25 @@
                         </div>
 
                     <div class="container w-50">
+                        <div class="row justify-content-between m-4">
 
-                        <div class="row p-2 justify-content-between">
-                            <div class="col-6">
-                                <i class="fas fa-arrow-alt-circle-right fa-2x text-primary"></i>
-                            </div>
-                            <div class="col-6">
+                            <!-- DATE ET HEURE INSCRIPTION USER -->
+                            <div class="col-6 text-white">
                                 inscrit(e) le {{ date('d-m-Y à H:i:s', strtotime($user->created_at)) }}
                             </div>
-                        </div>
 
-                        <div class="row p-2 justify-content-between">
-                            <div class="col-6">
-                                <i class="fas fa-comments fa-2x text-primary"></i>
-                            </div>
-                            <div class="col-6">
+                            <!-- NOMBRE DE POSTS DU USER -->
+                            <div class="col-6 text-white">
                                 {{ count($user->posts) }} post(s) posté(s)
                             </div>
+
                         </div>
-
                     </div>
-                    <!-- ***********************************AFFICHER LES postS*****************************-->
 
+                    <!-- ***********************************AFFICHER LES postS*****************************-->
                     @foreach ($user->posts as $post)
-                        <div class="card mb-4 mt-5 pb-2">
-                            <div class="card-header bg-warning">
+                        <div class="card mb-4 mt-3 pb-2">
+                            <div class="card-header bg-primary">
                                 <div class="row">
                                     <div class="col">
                                         @if ($user->image)
@@ -59,10 +55,12 @@
                                             <img class="m-1 rounded-circle" style="width: 5vw; height:5vw"
                                                 src="{{ asset('images/default_user.jpg') }}" alt="imageUtilisateur">
                                         @endif
+
                                         <h5><a href="{{ route('users.show', $post->user_id) }}">
-                                                <strong>{{ $user->pseudo }}</strong>
+                                                <strong class="text-white">{{ $user->pseudo }}</strong>
                                             </a>
                                         </h5>
+                                        
                                     </div>
                                     <div class="col m-auto">
                                         <h4>#{{ $post->tags }} </h4>
@@ -85,13 +83,13 @@
                                 <p>{{ $post->content }}</p>
 
 
-
                                 <!--  ******************************OPTIONS : MASQUER, COMMENTER, MODIFIER, SUPPRIMER******************   -->
                                 <div class="row mt-2">
                                     <div class="col"><a class="btn btn-info"
                                             onclick="document.getElementById('formulairecommentaire{{ $post->id }}').style.display = 'block'">Commenter
                                         </a>
                                     </div>
+
                                     <!-- si l'utilisateur connecté a posté le post, il peut le modifier et le supprimer-->
                                     @if ($post->user_id == Auth::user()->id)
                                         <div class="col">
@@ -136,33 +134,11 @@
                             <button type="submit" class="btn btn-warning">Valider</button>
                         </form>
 
-
-                        <!--                ***************************************modifier le post******************************-->
-
-                        <!-- <form style="display:none;" id="formulairecommentaire{{ $post->id }}" class="col-12 mx-auto mb-2" action="{{ route('posts.update', $post) }}" method="POST">
-                                @method('put')
-                                @csrf
-                                <div class="form-group">
-                                    <label for="content">Nouveau texte</label>
-                                    <input required type="text" class="form-control" name="content" value="{{ $post->content }}" id="content">
-                                </div>
-                                <div class="form-group">
-                                    <label for="image">Nouvelle image</label>
-                                    <input type="text" class="form-control" name="image" value="{{ $post->image }}" id="image">
-                                </div>
-                                <div class="form-group">
-                                    <label for="tags">Nouveaux tags</label>
-                                    <input type="text" class="form-control" name="tags" value="{{ $post->tags }}" id="tags">
-                                    <button type="submit" class="btn btn-primary">Valider</button>
-                                </div>
-                            </form> -->
-
                         <!-- ********************************************* AFFICHER LES COMMENTAIRES **********************************************-->
-
                         @foreach ($post->comments as $comment)
                             <div class="container w-75">
                                 <div class="card mb-2">
-                                    <div class="card-header text-light bg-primary">
+                                    <div class="card-header text-light bg-secondary">
                                         <div class="row">
                                             <div class="col">{{ $comment->user->pseudo }}</div>
                                             <div class="col">posté le {{ $comment->created_at }}</div>
@@ -170,6 +146,7 @@
                                     </div>
                                     <div class="card-body">{{ $comment->content }}
                                         @if ($post->user_id === Auth::id() || $comment->user_id === Auth::id())
+                                        
                                             <!--            si l'utilisateur connecté est l'auteur du post ou du commentaire, il peut supprimer le commentaire -->
                                             <form action="{{ route('comments.destroy', $comment) }}" method="post">
                                                 @csrf

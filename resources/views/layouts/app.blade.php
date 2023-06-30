@@ -18,13 +18,14 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
 </head>
 
-<body style="background-image: url(images/fond.jpg); background-attachment:fixed; background-size:cover" class="mt-5 pt-5">
+<body style="background-image: url({{ asset('images/fond.jpg') }}); background-attachment:fixed; background-size:cover"
+    class="mt-5 pt-5">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-primary fixed-top" style="height:80px">
             <div class="container">
                 <div class="img-fluid"> <a class="navbar-brand" href="{{ url('/') }}">
-                   <img src="images\logo_digitalk.png" alt="logo_digitalk" style="height:80px">
-                </a>
+                        <img src="{{ asset('images\logo_digitalk.png') }}" alt="logo_digitalk" style="height:60px">
+                    </a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -67,8 +68,9 @@
                             </form>
 
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    v-pre>
                                     {{ Auth::user()->pseudo }}
                                 </a>
 
@@ -83,6 +85,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                
                                 </div>
                             </li>
                         @endguest
@@ -109,11 +112,20 @@
                 @endif
             </div>
 
-
             @yield('content')
         </main>
 
+        <footer class="bg-primary" style="height:80px; margin-top:290px">
+            <div class="container">
+                <div class="img-fluid text-center"> <a href="{{ url('/') }}">
+                        <img src="{{ asset('images\logo_digitalk.png') }}" alt="logo_digitalk" style="height:80px">
+                    </a>
+                </div>
+            </div>
+        </footer>
+       
     </div>
+    
 </body>
 
 </html>

@@ -16,6 +16,7 @@ class CommentController extends Controller
         $request->validate([
             'content' => ['required', 'string', 'max:1000'],
             'tags' => ['required', 'string', 'max:40'],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
         Comment::create([
@@ -23,6 +24,7 @@ class CommentController extends Controller
             'post_id'=> $request->post_id,
             'content'=> $request->content,
             'tags' => $request->tags,
+            'image' => isset($request['image']) ? uploadImage($request['image']) : null,
         ]);
     
         return redirect()->route('home')->with('message', 'Votre commentaire a été ajouté avec succès !');
@@ -56,14 +58,16 @@ class CommentController extends Controller
         $request->validate([
             'content' => ['required', 'string', 'max:1000'],
             'tags' => ['required', 'string', 'max:40'],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $comment->update([
             'content'=> $request->content,
             'tags' => $request->tags,
+            'image' => isset($request['image']) ? uploadImage($request['image']) : null,
         ]);
 
-        return redirect()->route('home')->with('commentaire', 'Le commentaire a bien été modifié');
+        return redirect()->route('home')->with('message', 'Le commentaire a bien été modifié');
     }
 
     /**
@@ -74,7 +78,7 @@ class CommentController extends Controller
         $this->authorize('delete', $comment);
         
         $comment->delete();
-        return redirect()->route('home')->with('commentaire', 'Le commentaire a bien été supprimé');
+        return redirect()->route('home')->with('message', 'Le commentaire a bien été supprimé');
     }
 }
 

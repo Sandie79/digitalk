@@ -11,28 +11,30 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function index () {
+    public function index()
+    {
         $posts = Post::with('category')->paginate(10);
         return view('admin.posts.index', ['posts' => $posts]);
     }
-    
-    
-     public function store(Request $request)
+
+
+    public function store(Request $request)
     {
         //dd($request);
         $request->validate([
-        'content' => ['required', 'string', 'max:1000'],
-        'tags' => ['required', 'string', 'max:40'],
-    ]);
+            'content' => ['required', 'string', 'max:1000'],
+            'tags' => ['required', 'string', 'max:40'],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-    Post::create([
-        'user_id'=> Auth::user()->id,
-        'content'=> $request->content,
-        'tags' => $request->tags,
-    ]);
+        Post::create([
+            'user_id' => Auth::user()->id,
+            'content' => $request->content,
+            'tags' => $request->tags,
+            'image' => isset($request['image']) ? uploadImage($request['image']) : null,
+        ]);
 
-    return redirect()->route('home')->with('message', 'Votre message a été ajouté avec succès !');
-
+        return redirect()->route('home')->with('message', 'Votre message a été ajouté avec succès !');
     }
 
     /**
@@ -61,11 +63,13 @@ class PostController extends Controller
         $request->validate([
             'content' => ['required', 'string', 'max:1000'],
             'tags' => ['required', 'string', 'max:40'],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $post->update([
-            'content'=> $request->content,
+            'content' => $request->content,
             'tags' => $request->tags,
+            'image' => isset($request['image']) ? uploadImage($request['image']) : null,
         ]);
 
         return redirect()->route('home')->with('message', 'Le message a bien été modifié');
@@ -83,15 +87,15 @@ class PostController extends Controller
     }
 
     public function search(Request $request)
-{
-    $request->validate([
-        'search' => ['required', 'string', 'max:20', 'min:3'],
-    ]);
+    {
+        $request->validate([
+            'search' => ['required', 'string', 'max:20', 'min:3'],
+        ]);
 
-    $posts = Post::where('content', 'LIKE', '%' . $request->search . '%')
-                 ->orWhere('tags', 'LIKE', '%' . $request->search . '%')
-                 ->latest()->paginate();
+        $posts = Post::where('content', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('tags', 'LIKE', '%' . $request->search . '%')
+            ->latest()->paginate();
 
-    return view('home', compact('posts'));
-}
+        return view('home', compact('posts'));
+    }
 }
