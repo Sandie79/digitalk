@@ -20,7 +20,6 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request);
         $request->validate([
             'content' => ['required', 'string', 'max:1000'],
             'tags' => ['required', 'string', 'max:40'],
@@ -37,14 +36,7 @@ class PostController extends Controller
         return redirect()->route('home')->with('message', 'Votre message a été ajouté avec succès !');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
+ 
     /**
      * Show the form for editing the specified resource.
      */

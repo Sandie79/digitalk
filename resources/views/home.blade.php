@@ -14,7 +14,7 @@ Digitalk - Liste des messages
             <h2 class="text-center text-white">Ajouter un message</h2>
             <div class="row">
 
-                <form class="col-4 mx-auto" action="{{ route('posts.store') }}" enctype="multipart/form-data" method="POST">
+                <form class="col-md-4 mx-auto" action="{{ route('posts.store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
 
                     <!-- AJOUTER UN MESSAGE -->
@@ -32,10 +32,10 @@ Digitalk - Liste des messages
                     </div>
 
                     <!-- AJOUTER UNE IMAGE -->
-                    <div class="row mb-3 mt-5">
-                        <label for="image" class="text-white fs-5 col-md-4 col-form-label text-md-end">Image</label>
+                    <div class="row mb-3 mt-3">
+                        <label for="image" class="text-white fs-5 col-md-4 col-form-label text-md-start">Image</label>
 
-                        <div class="col-md-6">
+                        <div>
                             <input id="image" type="file" class="form-control @error('image') is-invalid @enderror"
                                 name="image" value="{{ old('image') }}" autofocus>
 
@@ -60,7 +60,7 @@ Digitalk - Liste des messages
         <div class="container mt-5">
             @if ($posts->count() > 0)
                 @foreach ($posts as $post)
-                    <div class="card mx-auto mb-3 w-50" style="width: 18rem;">
+                    <div class="card mx-auto mb-3 w-100" style="width: 18rem;">
                         <div class="card-body">
 
                             <!-- IMAGE DU POST -->
@@ -115,7 +115,7 @@ Digitalk - Liste des messages
                             </div>
 
                             <!-- COMMENTAIRES POSTES -->
-                            <div class="card mx-auto mb-3 w-50" style="width: 18rem;">
+                            <div class="card mx-auto mb-3 w-100" style="width: 18rem;">
                                 <h3>Commentaires : </h3>
                                 @foreach ($post->comments as $comment)
                                     <a href=''>{{ $comment->user->pseudo }} : </a>
@@ -161,6 +161,7 @@ Digitalk - Liste des messages
                                 @endforeach
                             </div>
 
+                            <!-- AJOUTER UN COMMENTAIRE -->
                             <form class="col mx-auto" action="{{ route('comments.store') }}" enctype="multipart/form-data"
                                 method="POST">
                                 @csrf

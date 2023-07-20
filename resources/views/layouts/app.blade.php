@@ -21,10 +21,10 @@
 <body style="background-image: url({{ asset('images/fond.jpg') }}); background-attachment:fixed; background-size:cover"
     class="mt-5 pt-5">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-primary fixed-top" style="height:80px">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-primary fixed-top" style="height:90px">
             <div class="container bg-primary">
                 <div class="img-fluid"> <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('images\logo_digitalk.png') }}" alt="logo_digitalk" style="height:60px">
+                        <img src="{{ asset('images\logo_digitalk.png') }}" alt="logo_digitalk" style="height:70px">
                     </a>
                 </div>
 

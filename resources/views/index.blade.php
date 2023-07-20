@@ -11,7 +11,7 @@ Digitalk - Accueil
 
             <img src="images\logo_digitalk.png" alt="logo_digitalk" class="mt-5 w-25">
 
-        <div class="row justify-content-center mt-5 my-auto w-50 mx-auto">
+        <div class="row mt-5 w-50 mx-auto">
 
             <!-- BOUTON CONNEXION-->
             <div class="col-md-6 text-center">
