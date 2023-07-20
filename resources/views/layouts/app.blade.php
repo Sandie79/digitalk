@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,7 +22,7 @@
     class="mt-5 pt-5">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-primary fixed-top" style="height:80px">
-            <div class="container">
+            <div class="container bg-primary">
                 <div class="img-fluid"> <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{ asset('images\logo_digitalk.png') }}" alt="logo_digitalk" style="height:60px">
                     </a>
@@ -34,7 +34,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse p-3" id="navbarSupportedContent">
 
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

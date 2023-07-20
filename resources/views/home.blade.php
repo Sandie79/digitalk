@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Digitalk - Liste des messages
+@endsection
+
 @section('content')
     <div class="container pt-3">
         <h1 class="title text-white text-center">Bienvenue sur Digitalk</h1>

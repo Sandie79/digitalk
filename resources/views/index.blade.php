@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Digitalk - Accueil
+@endsection
+
 @section('content')
 
     <div class="container-fluid text-center">

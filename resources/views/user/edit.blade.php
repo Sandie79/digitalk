@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('title')
-    Mon compte
+    Digitalk - Mon compte
 @endsection
 
 @section('content')

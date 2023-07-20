@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('title')
-    Modification message
+    Digitalk - Modification message
 @endsection
 
 @section('content')

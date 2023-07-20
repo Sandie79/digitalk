@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('title')
-    Profil de {{ $user->pseudo }}
+    Digitalk - Profil de {{ $user->pseudo }}
 @endsection
 
 @section('content')
@@ -60,7 +60,7 @@
                                                 <strong class="text-white">{{ $user->pseudo }}</strong>
                                             </a>
                                         </h5>
-                                        
+
                                     </div>
                                     <div class="col m-auto">
                                         <h4>#{{ $post->tags }} </h4>

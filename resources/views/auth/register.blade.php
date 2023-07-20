@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Digitalk - Inscription
+@endsection
+
 @section('content')
 <div class="container">
     <h1 class="title text-white text-center">Inscription</h1>

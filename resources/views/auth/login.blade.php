@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Digitalk - Connexion
+@endsection
+
 @section('content')
 <div class="container mt-5">
     <h1 class="title text-white text-center">Connexion</h1>
